@@ -2,16 +2,29 @@ let errorState = false;
 
 document.getElementById("submit").onclick = function () {
     let value = document.getElementById("display").value;
-    //fetch me the same data via fetch api
+    
     fetch(`http://api.mathjs.org/v4/?expr=${encodeURIComponent(value)}`)
-        .then((response) => response.text())
+        .then((response) => {
+            if(response.ok){
+            return response.text();
+            }
+            throw new Error("Network response was not ok");    
+        })
         .then((data) => {
+            
             document.getElementById("display").value = data;
+            
         })
         .catch((error) => {
             console.log(error);
-            // document.getElementById("display").value = "Error";
+            document.getElementById("display").value = "Error";
             errorState = true;
+            if(errorState){
+                setTimeout(() => {
+                    document.getElementById("display").value = "";
+                    errorState = false;
+                }, 2000);
+            }
         });
     // const xhl = new XMLHttpRequest();
     // const requestExpression = `http://api.mathjs.org/v4/?exp=${encodeURIComponent(value)}`;
