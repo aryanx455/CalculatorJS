@@ -1,9 +1,27 @@
+let errorState = false;
+
+
 document.getElementById("submit").onclick = function () {
     let value = document.getElementById("display").value;
     const xhl = new XMLHttpRequest();
-    xhl.open("GET", `http://api.mathjs.org/v4/?expr=${value}`, true);
+    const requestExpression = `http://api.mathjs.org/v4/?exp=${encodeURIComponent(value)}`;
+    
+    xhl.open("GET", requestExpression, true);
     xhl.onload = function () {
+        if(xhl.status === 200 && xhl.readyState === 4){
         document.getElementById("display").value = xhl.responseText;
+        }
+        else{
+            document.getElementById("display").value = "Error";
+            errorState = true;
+
+            if (errorState) {
+                setTimeout(() => {
+                    document.getElementById("display").value = "";
+                    errorState = false;
+                }, 2000);
+            }
+        }
     };
     xhl.send();
 };
@@ -11,7 +29,9 @@ document.getElementById("AC").onclick = function () {
     document.getElementById("display").value = "";
 };
 document.getElementById("DE").onclick = function () {
-    document.getElementById("display").value = "";
+    let val = document.getElementById("display").value.slice(0, -1);
+    document.getElementById("display").value = val;
+    // console.log(val.slice(0, -1));
 };
 
 document.getElementById("two").onclick = function () {
