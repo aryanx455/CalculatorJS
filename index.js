@@ -1,29 +1,39 @@
 let errorState = false;
 
-
 document.getElementById("submit").onclick = function () {
     let value = document.getElementById("display").value;
-    const xhl = new XMLHttpRequest();
-    const requestExpression = `http://api.mathjs.org/v4/?exp=${encodeURIComponent(value)}`;
-    
-    xhl.open("GET", requestExpression, true);
-    xhl.onload = function () {
-        if(xhl.status === 200 && xhl.readyState === 4){
-        document.getElementById("display").value = xhl.responseText;
-        }
-        else{
-            document.getElementById("display").value = "Error";
+    //fetch me the same data via fetch api
+    fetch(`http://api.mathjs.org/v4/?expr=${encodeURIComponent(value)}`)
+        .then((response) => response.text())
+        .then((data) => {
+            document.getElementById("display").value = data;
+        })
+        .catch((error) => {
+            console.log(error);
+            // document.getElementById("display").value = "Error";
             errorState = true;
+        });
+    // const xhl = new XMLHttpRequest();
+    // const requestExpression = `http://api.mathjs.org/v4/?exp=${encodeURIComponent(value)}`;
 
-            if (errorState) {
-                setTimeout(() => {
-                    document.getElementById("display").value = "";
-                    errorState = false;
-                }, 2000);
-            }
-        }
-    };
-    xhl.send();
+    // xhl.open("GET", requestExpression, true);
+    // xhl.onload = function () {
+    //     if(xhl.status === 200 && xhl.readyState === 4){
+    //     document.getElementById("display").value = xhl.responseText;
+    //     }
+    //     else{
+    //         document.getElementById("display").value = "Error";
+    //         errorState = true;
+
+    //         if (errorState) {
+    //             setTimeout(() => {
+    //                 document.getElementById("display").value = "";
+    //                 errorState = false;
+    //             }, 2000);
+    //         }
+    //     }
+    // };
+    // xhl.send();
 };
 document.getElementById("AC").onclick = function () {
     document.getElementById("display").value = "";
@@ -31,7 +41,6 @@ document.getElementById("AC").onclick = function () {
 document.getElementById("DE").onclick = function () {
     let val = document.getElementById("display").value.slice(0, -1);
     document.getElementById("display").value = val;
-    // console.log(val.slice(0, -1));
 };
 
 document.getElementById("two").onclick = function () {
@@ -79,5 +88,4 @@ document.getElementById("multiply").onclick = function () {
 
 document.getElementById("divide").onclick = function () {
     document.getElementById("display").value += "/";
-    
 };
