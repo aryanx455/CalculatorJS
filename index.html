@@ -1,56 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <div class="calculator">
-            <form>
-                <div class="display">
-                    <input type="text" name = "display" >
-                </div>
-                <div>
-                    <input type="button" value="AC" >
-                    <input type="button" value="DE">
-                    <input type="button" value=".">
-                    <input type="button" value="/">
-                </div>
-                <div>
-                    <input type="button" value="7">
-                    <input type="button" value="8">
-                    <input type="button" value="9">
-                    <input type="button" value="*">
-                </div>
-                <div>
-                    <input type="button" value="4">
-                    <input type="button" value="5">
-                    <input type="button" value="6">
-                    <input type="button" value="-">
-                </div>
-                <div>
-                    <input type="button" value="1">
-                    <input type="button" value="2">
-                    <input type="button" value="3">
-                    <input type="button" value="+">
-                </div>
-                <div class="bottom-row">
-                    <div>
-                    <input type="button" value="00">
-                    <input type="button" value="0">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="calculator">
+                <form>
+                    <div class="display">
+                        <input type="text" name="display" id="display"/>
                     </div>
                     <div>
-                    <input type="button" value="=" style="width: 144px;">
+                        <input type="button" value="AC" id="AC"/>
+                        <input type="button" value="DE" id="DE" />
+                        <input type="button" value="."  id="period"/>
+                        <input type="button" value="/"  id="divide"/>
                     </div>
-                </div>
-            </form>
+                    <div>
+                        <input type="button" value="7" id="seven"/>
+                        <input type="button" value="8" id="eight"/>
+                        <input type="button" value="9" id="nine"/>
+                        <input type="button" value="*" id="multiply"/>
+                    </div>
+                    <div>
+                        <input type="button" value="4" id="four"/>
+                        <input type="button" value="5" id="five"/>
+                        <input type="button" value="6" id="six"/>
+                        <input type="button" value="-" id="substract"/>
+                    </div>
+                    <div>
+                        <input type="button" value="1" id="one"/>
+                        <input type="button" value="2" id="two"/>
+                        <input type="button" value="3" id="three"/>
+                        <input type="button" value="+" id="addition"/>
+                    </div>
+                    <div class="bottom-row">
+                        <div>
+                            <input type="button" value="00" id="double-zero"/>
+                            <input type="button" value="0"  id="single-zero"/>
+                        </div>
+                        <div>
+                            <input
+                                type="button"
+                                value="="
+                                style="width: 144px"
+                                id="submit"
+                            />
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-
-    </div>
-    
-</body>
+    </body>
+    <script src="./index.js"></script>
 </html>
